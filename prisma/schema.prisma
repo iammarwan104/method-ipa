@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+
+model Products {
+  id Int @id @default(autoincrement()) 
+  nama String
+  price String
+  image String?
+}
+
+enum Gender{
+  Pria
+  Wanita
+  }
+
+model Anggota {
+  nis String @id
+  name String
+  address String
+  gender Gender
+  class String
+  faculty String
+  books Pinjam[]
+}
+
+model Pinjam{
+  id Int @id @default(autoincrement())
+  pickUpDate DateTime @default(now())
+  returnDate DateTime
+  idBook Int
+  book Books @relation(fields: [idBook], references: [id])
+  nisAnggota String
+  nis Anggota @relation(fields: [nisAnggota], references: [nis])
+}
+
+model Books{
+  id Int @id @default(autoincrement())
+  name String
+  publicationYear Int
+  language String
+  pages Int
+  idCategory Int
+  category Category @relation(fields: [idCategory], references: [id])
+  anggota Pinjam[]
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  posts Books[]
+}
+
+model Author {
+  id Int @id @default(autoincrement())
+  name String
+}
+
+model Publishers {
+  id Int @id @default(autoincrement())
+  name String
+}
