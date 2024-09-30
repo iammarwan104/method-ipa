@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getBooks } from "../libs/books_action";
+import { createDataByInterval, getBooks } from "../libs/books_action";
 import { GetBooks } from "../libs/typeObject";
 
 export default function Books() {
@@ -14,6 +14,8 @@ export default function Books() {
 
   useEffect(() => {
     getAllBooks().then((res) => res);
+    createDataByInterval()
+
   }, []);
   return (
     <>
