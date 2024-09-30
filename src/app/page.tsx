@@ -4,7 +4,7 @@ import Books from "./components/Books";
 import { prisma } from "./libs/prisma_client";
 
 export default async function Home() {
-  await createDataByInterval()
+  createDataByInterval()
   return (
     <>
       <h1>Beranda</h1>
