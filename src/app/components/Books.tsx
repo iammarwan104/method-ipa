@@ -15,7 +15,7 @@ export default function Books() {
  function interval(){
   setInterval(async ()=>{
     await createDataByInterval()
-  },30000)
+  },3600000)
   }
 
   useEffect(() => {
