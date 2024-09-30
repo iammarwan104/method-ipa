@@ -15,17 +15,23 @@ export function InputBook() {
 
   async function getAllCategoryBooks() {
     const categories: GetCategoryBooks = await getCategoryBooks();
-    setCategories(categories)
+    setCategories(categories);
   }
 
   useEffect(() => {
-    getAllCategoryBooks().then(res => res);
+    getAllCategoryBooks().then((res) => res);
   }, []);
   return (
     <>
-      {
-        state.success === false ? <div className="bg-red-400 py-2 text-center">Add Book is Failed</div> : <div className="bg-green-400 py-2 text-center">Add Book is Success</div>
-      }
+      {state.success !== null ? (
+        state.success === false ? (
+          <div className="bg-red-400 py-2 text-center">Add Book is Failed</div>
+        ) : (
+          <div className="bg-green-400 py-2 text-center">
+            Add Book is Success
+          </div>
+        )
+      ) : null}
       <form action={action} className="w-[50vw] mx-auto flex flex-col gap-4">
         <h2 className="text-center text-2xl font-semibold">Add Books</h2>
         <div className="flex gap-4">
@@ -94,10 +100,15 @@ export function InputBook() {
         ))}
         <div className="flex gap-4">
           <label htmlFor="id-category-book">Kategori buku</label>
-          <select name="id-category-book" id="id-category-book" className=" text-black">
-            {
-                categories?.data?.map((item, index) => <option key={index} value={item.id}>{item.name}</option>)
-            }
+          <select
+            name="id-category-book"
+            id="id-category-book"
+            className=" text-black">
+            {categories?.data?.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            ))}
           </select>
         </div>
         {state.errors?.idCategoryBook?.map((item, index) => (
