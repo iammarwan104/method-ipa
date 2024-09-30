@@ -67,7 +67,6 @@ export async function getCategoryBooks(): Promise<GetCategoryBooks>{
 }
 
 export async function createDataByInterval(){
-    setInterval(async () => {
         try {
           await prisma.books.create({
             data: {
@@ -84,5 +83,4 @@ export async function createDataByInterval(){
           }
           return { errors: "error tidak diketahui" };
         }
-      }, 60000);
 }

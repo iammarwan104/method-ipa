@@ -12,10 +12,15 @@ export default function Books() {
     setDatas(datas);
   }
 
+ function interval(){
+  setInterval(async ()=>{
+    await createDataByInterval()
+  },30000)
+  }
+
   useEffect(() => {
     getAllBooks().then((res) => res);
-    createDataByInterval()
-
+    interval()
   }, []);
   return (
     <>
