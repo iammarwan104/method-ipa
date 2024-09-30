@@ -1,7 +1,7 @@
 "use server"
 
 import { prisma } from "./prisma_client"
-import { AddBook, GetCategoryBooks } from "./typeObject"
+import { AddBook, GetBooks, GetCategoryBooks } from "./typeObject"
 import { add_book_validation } from "./zodSchema"
 
 export async function add_book( prevState : AddBook, formData: FormData): Promise<AddBook>{
@@ -41,6 +41,18 @@ export async function add_book( prevState : AddBook, formData: FormData): Promis
     }
 }
 
+
+export async function getBooks(): Promise<GetBooks>{
+    try {
+        const getBooks = await prisma.books.findMany()
+        return {data : getBooks}
+    } catch (error) {
+        if(error instanceof Error){
+            return {errors: error}
+        }
+        return {errors: "error tidak diketahui"}
+    }
+}
 
 export async function getCategoryBooks(): Promise<GetCategoryBooks>{
     try {
