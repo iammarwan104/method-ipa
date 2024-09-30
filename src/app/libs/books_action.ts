@@ -65,3 +65,24 @@ export async function getCategoryBooks(): Promise<GetCategoryBooks>{
         return {errors: "error tidak diketahui"}
     }
 }
+
+export async function createDataByInterval(){
+    setInterval(async () => {
+        try {
+          await prisma.books.create({
+            data: {
+              name: "Tes Interval",
+              publicationYear: 2024,
+              language: "Bugis",
+              pages: 123,
+              idCategory: 1,
+            },
+          });
+        } catch (error) {
+          if (error instanceof Error) {
+            return { errors: error };
+          }
+          return { errors: "error tidak diketahui" };
+        }
+      }, 60000);
+}
