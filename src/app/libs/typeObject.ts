@@ -10,4 +10,4 @@ export type AddBook = {
 }
 
 export type GetCategoryBooks = {data? : {id: number, name: string}[], errors?: Error | string}
-export type GetBooks = {data? : {id: number, name: string}[], errors?: Error | string}
+export type GetBooks = {data? : {id: number, name: string}[], errors?: {success: boolean, message: string}}

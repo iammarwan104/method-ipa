@@ -48,9 +48,15 @@ export async function getBooks(): Promise<GetBooks>{
         return {data : getBooks}
     } catch (error) {
         if(error instanceof Error){
-            return {errors: error}
+            return {errors: {
+                message: error.name,
+                success:false
+            }}
         }
-        return {errors: "error tidak diketahui"}
+        return {errors: {
+            message: "error tidak diketahui",
+            success:false
+        }}
     }
 }
 
