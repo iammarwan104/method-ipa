@@ -11,10 +11,16 @@ export async function GET(request: NextRequest){
     }catch(error){
         if(error instanceof Error){
             console.error(error, " error in route")
-            return Response.json(error.message)
+            return Response.json({
+                success: false,
+                message: error.message
+            })
         }else{
             console.error("unexpected error accoured")
-            return Response.json("unexpected error accoured")
+            return Response.json({
+                success: false,
+                message: "unexpected error accoured"
+            })
         }
     }
 }
