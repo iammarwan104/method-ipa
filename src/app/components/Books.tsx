@@ -12,23 +12,28 @@ export default function Books() {
     setDatas(datas);
   }
 
- function interval(){
-  setInterval(async ()=>{
-    await createDataByInterval()
-  },3600000)
+  function interval() {
+    setInterval(async () => {
+      await createDataByInterval();
+    }, 3600000);
+  }
+
+  async function handleUpdate() {
+    await createDataByInterval();
   }
 
   useEffect(() => {
     getAllBooks().then((res) => res);
-    interval()
+    interval();
   }, []);
   return (
     <>
-      {datas?.data?.map((item, index) => (
-        <p key={index}>
-          {item.name}
-        </p>
-      ))}
+      <button onClick={handleUpdate}>update</button>
+      {!datas ? (
+        <div>Kosong</div>
+      ) : (
+        datas?.data?.map((item, index) => <p key={index}>{item.name}</p>)
+      )}
     </>
   );
 }
