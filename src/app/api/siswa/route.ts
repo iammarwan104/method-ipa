@@ -11,9 +11,11 @@ export async function GET(request: NextRequest){
     }catch(error){
         if(error instanceof Error){
             console.error(error, " error in route")
-            return error.message
+            return Response.json(error)
+
         }else{
-            console.error("unexpected error accoured")
+            return Response.json({error: "error tidak diketahui"})
+
         }
     }
 }

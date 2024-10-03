@@ -161,3 +161,18 @@ import { $Enums } from "@prisma/client";
       name?: string | null 
       errorMessage? : string[] | string
     }
+
+    export interface Siswa{
+      success: boolean;
+      data?: {
+          id: number;
+          name: string;
+          gender: $Enums.Gender;
+          phoneNumber: string;
+          status: boolean;
+          createdAt: Date;
+      }[];
+      totalSiswa?: number;
+      totalPages?: number;
+      message?: string;
+  }

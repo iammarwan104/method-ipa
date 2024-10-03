@@ -2,7 +2,7 @@
 import { Gender, PrismaClient } from '@prisma/client'
 import { signIn } from '../../../auth'
 import { redirect } from 'next/navigation'
-import { CheckNumberPhone, Item, Login, State, tambahDataSiswaInterface } from './interface'
+import { CheckNumberPhone, Item, Login, Siswa, State, tambahDataSiswaInterface } from './interface'
 import { AuthError } from 'next-auth'
 import { revalidatePath } from 'next/cache.js'
 import { prisma } from '@/app/lib/prismaClient'
@@ -602,7 +602,7 @@ export async function handleSignIn(formData: FormData){
 }
 
 
-export async function getDataSiswa(page: number){
+export async function getDataSiswa(page: number):Promise<Siswa|undefined>{
 try {
   console.log(page, " page in action")
   const totalData = await prisma.siswaKursusMengemudi.count()
