@@ -69,7 +69,7 @@ export async function addBlue(formData: FormData){
   }
  }
 
-export async function login(prevState: Login, formData: FormData): Promise<Login|undefined>{
+export async function login(prevState: Login, formData: FormData): Promise<Login>{
 
   const username = formData.get('username') as string
   const password = formData.get('password') as string
@@ -102,7 +102,9 @@ export async function login(prevState: Login, formData: FormData): Promise<Login
       if (error instanceof AuthError) {
         return redirect(`${"/error-page"}?error=${error.type}`);
       }
-      throw error;
+      return {
+        error: "An unknown error occurred"
+      }
     }
 }}
 }
