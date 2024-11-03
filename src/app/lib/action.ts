@@ -98,6 +98,9 @@ export async function login(prevState: Login, formData: FormData): Promise<Login
         callbackUrl: "/admin",
         redirect: true,
       });
+      return {
+        success:true
+      }
     } catch (error) {
       if (error instanceof AuthError) {
         return redirect(`${"/error-page"}?error=${error.type}`);
