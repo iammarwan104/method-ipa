@@ -1,39 +1,36 @@
-"use client";
+// "use client";
 
-import { useEffect, useState } from "react";
-import { createDataByInterval, getBooks } from "../libs/books_action";
-import { GetBooks } from "../libs/typeObject";
+// import { useEffect, useState } from "react";
+// export default function Books() {
+//   const [datas, setDatas] = useState<GetBooks>();
 
-export default function Books() {
-  const [datas, setDatas] = useState<GetBooks>();
+//   async function getAllBooks() {
+//     const datas: GetBooks = await getBooks();
+//     setDatas(datas);
+//   }
 
-  async function getAllBooks() {
-    const datas: GetBooks = await getBooks();
-    setDatas(datas);
-  }
+//   function interval() {
+//     setInterval(async () => {
+//       await createDataByInterval();
+//     }, 3600000);
+//   }
 
-  function interval() {
-    setInterval(async () => {
-      await createDataByInterval();
-    }, 3600000);
-  }
+//   async function handleUpdate() {
+//     await createDataByInterval();
+//   }
 
-  async function handleUpdate() {
-    await createDataByInterval();
-  }
-
-  useEffect(() => {
-    getAllBooks().then((res) => res);
-    interval();
-  }, []);
-  return (
-    <>
-      <button onClick={handleUpdate}>update</button>
-      {!datas ? (
-        <div>Kosong</div>
-      ) : (
-        datas?.data?.map((item, index) => <p key={index}>{item.name}</p>)
-      )}
-    </>
-  );
-}
+//   useEffect(() => {
+//     getAllBooks().then((res) => res);
+//     interval();
+//   }, []);
+//   return (
+//     <>
+//       <button onClick={handleUpdate}>update</button>
+//       {!datas ? (
+//         <div>Kosong</div>
+//       ) : (
+//         datas?.data?.map((item, index) => <p key={index}>{item.name}</p>)
+//       )}
+//     </>
+//   );
+// }
