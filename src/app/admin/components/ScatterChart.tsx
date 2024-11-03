@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Chart } from "chart.js/auto";
 import annotationPlugin from "chartjs-plugin-annotation";
-import { GarisPerbatasan } from "../page";
+import { GarisPerbatasan } from "@/app/lib/interface";
 Chart.register(annotationPlugin);
 
 interface ScatterData {
