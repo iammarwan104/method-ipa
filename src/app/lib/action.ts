@@ -555,8 +555,8 @@ export async function handleSignIn(formData: FormData){
     const dataSiswa = tambahDataSiswaSchema.safeParse({
       nama: siswa.nama as string,
       gender: siswa.gender as string,
-      phoneNumber: Number(siswa.number),
-      
+      phoneNumber: siswa.number
+  
     })
 
     if(dataSiswa.success === false){
@@ -565,7 +565,6 @@ export async function handleSignIn(formData: FormData){
         errors: dataSiswa.error.flatten().fieldErrors
       }
     }
-    console.log(dataSiswa)
 
     await prisma.siswaKursusMengemudi.create({
       data: {
@@ -713,6 +712,7 @@ export async function checkPhoneNumberSignIn(prevState: CheckNumberPhone, formDa
   const resultCheckPhoneNumberZod = checkPhoneNumberZod.safeParse({
     phoneNumber: phoneNumber
   })
+  console.log(phoneNumber, "phoneNumber")
   if(resultCheckPhoneNumberZod.success === false){
     console.log(resultCheckPhoneNumberZod?.error.flatten().fieldErrors)
     return {
@@ -729,7 +729,7 @@ export async function checkPhoneNumberSignIn(prevState: CheckNumberPhone, formDa
     }
   })
 
-  console.log(resultCheckDataByPrisma)
+  console.log(resultCheckDataByPrisma, "resultCheckDataByPrisma")
   if(!resultCheckDataByPrisma){
     return {
       success: false,
