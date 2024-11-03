@@ -6,8 +6,7 @@ export default async function Page({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  // const data = ["kopi1","kopi2","kopi3","kopi4","kopi5","kopi6","kopi7","kopi8","kopi9","kopi10","kopi11","kopi12","kopi13","kopi14","kopi15","kopi16","kopi17","kopi18","kopi19"]
-  const data = await getDataSiswa();
+  const data = await getDataSiswa(1);
   if (!Array.isArray(data)) {
     console.error("Error fetch data ", data);
     return;
