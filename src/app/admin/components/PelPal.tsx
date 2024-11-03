@@ -1,4 +1,6 @@
-import { GarisPerbatasan, ScatterData } from "../page";
+// import { GarisPerbatasan, ScatterData } from "../page";
+
+import { GarisPerbatasan, ScatterData } from "@/app/lib/interface";
 
 export default function PelPal({
   datas,
